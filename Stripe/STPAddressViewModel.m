@@ -233,7 +233,7 @@
 }
 
 - (void)setAddress:(STPAddress *)address {
-    self.addressFieldTableViewCountryCode = address.country;
+    //self.addressFieldTableViewCountryCode = address.country;
     
     for (STPAddressFieldTableViewCell *cell in self.addressCells) {
         switch (cell.type) {
