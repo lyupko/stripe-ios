@@ -127,7 +127,7 @@
 }
 
 - (void)commonInit {
-    _addressFieldTableViewCountryCode = [[NSLocale autoupdatingCurrentLocale] objectForKey:NSLocaleCountryCode];
+    _addressFieldTableViewCountryCode = _addressInfo != nil ? _addressInfo.country : [[NSLocale autoupdatingCurrentLocale] objectForKey:NSLocaleCountryCode];
     [self updatePostalCodeCellIfNecessary];
 }
 
@@ -233,7 +233,7 @@
 }
 
 - (void)setAddress:(STPAddress *)address {
-    //self.addressFieldTableViewCountryCode = address.country;
+    self.addressFieldTableViewCountryCode = address.country;
     
     for (STPAddressFieldTableViewCell *cell in self.addressCells) {
         switch (cell.type) {

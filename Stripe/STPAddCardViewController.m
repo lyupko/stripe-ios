@@ -146,6 +146,8 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     
     if (_configuration.cradImageEnabled) {
         self.tableView.tableHeaderView = cardImageView;
+    } else {
+        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
     }
 
     self.emailCell = [[STPRememberMeEmailCell alloc] initWithDelegate:self];
