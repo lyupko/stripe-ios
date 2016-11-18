@@ -16,6 +16,7 @@
 @property(nonatomic)PKAddressField requiredShippingAddressFields;
 @property(nonatomic)NSArray<STPAddressFieldTableViewCell *> *addressCells;
 @property(nonatomic)BOOL showingPostalCodeCell;
+@property(nonatomic)STPAddress* addressInfo;
 @end
 
 @implementation STPAddressViewModel
@@ -56,6 +57,7 @@
 - (instancetype)initWithRequiredBillingFields:(STPBillingAddressFields)requiredBillingAddressFields andAddressInfo:(STPAddress*)addressInfo {
     self = [super init];
     if (self) {
+        _addressInfo = addressInfo;
         _isBillingAddress = YES;
         _requiredBillingAddressFields = requiredBillingAddressFields;
         switch (requiredBillingAddressFields) {
@@ -75,7 +77,7 @@
                                   [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeCity contents:addressInfo.city lastInList:NO delegate:self],
                                   [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeState contents:addressInfo.state lastInList:NO delegate:self],
                                   // Postal code cell will be added later if necessary
-                                  [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeCountry contents:_addressFieldTableViewCountryCode lastInList:YES delegate:self],
+                                  [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeCountry contents:addressInfo.country lastInList:YES delegate:self],
                                   ];
                 break;
         }
@@ -135,7 +137,7 @@
     if (shouldBeShowingPostalCode && !self.showingPostalCodeCell) {
         if (self.isBillingAddress && self.requiredBillingAddressFields == STPBillingAddressFieldsZip) {
             self.addressCells = @[
-                                  [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeZip contents:@"" lastInList:YES delegate:self]
+                                  [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeZip contents:_addressInfo != nil ? _addressInfo.postalCode : @"" lastInList:YES delegate:self]
                                   ];
             [self.delegate addressViewModel:self addedCellAtIndex:0];
             [self.delegate addressViewModelDidChange:self];
@@ -150,7 +152,7 @@
                 NSUInteger zipFieldIndex = stateFieldIndex + 1;
 
                 NSMutableArray<STPAddressFieldTableViewCell *> *mutableAddressCells = self.addressCells.mutableCopy;
-                [mutableAddressCells insertObject:[[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeZip contents:@"" lastInList:NO delegate:self]
+                [mutableAddressCells insertObject:[[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeZip contents:_addressInfo != nil ? _addressInfo.postalCode : @"" lastInList:NO delegate:self]
                                           atIndex:zipFieldIndex];
                 self.addressCells = mutableAddressCells.copy;
                 [self.delegate addressViewModel:self addedCellAtIndex:zipFieldIndex];
