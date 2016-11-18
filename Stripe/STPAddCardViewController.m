@@ -438,6 +438,10 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     self.checkoutAccountCard = nil;
 }
 
+- (void)saveCard {
+    [self nextPressed:nil];
+}
+
 #pragma mark - STPPaymentCardTextField
 
 - (void)paymentCardTextFieldDidChange:(STPPaymentCardTextField *)textField {

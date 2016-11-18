@@ -184,4 +184,7 @@ static NSInteger STPPaymentMethodAddCardSection = 1;
     [self.delegate internalViewControllerDidCreateToken:token completion:completion];
 }
 
+- (void)addCardViewController:(__unused STPAddCardViewController *)addCardViewController didUpdateCardAvailable:(__unused BOOL)available {
+}
+
 @end
