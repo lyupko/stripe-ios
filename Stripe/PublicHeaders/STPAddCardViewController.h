@@ -53,6 +53,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, copy, nullable)NSString *managedAccountCurrency;
 
+
+- (void)saveCard;
+
 @end
 
 /**
@@ -79,6 +82,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addCardViewController:(STPAddCardViewController *)addCardViewController
                didCreateToken:(STPToken *)token
                    completion:(STPErrorBlock)completion;
+
+
+- (void)addCardViewController:(STPAddCardViewController *)addCardViewController didUpdateCardAvailable:(BOOL)available;
 
 @end
 

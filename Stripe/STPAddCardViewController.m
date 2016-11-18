@@ -110,7 +110,13 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     _configuration = configuration;
     _theme = theme;
     _apiClient = [[STPAPIClient alloc] initWithConfiguration:configuration];
-    _addressViewModel = [[STPAddressViewModel alloc] initWithRequiredBillingFields:configuration.requiredBillingAddressFields];
+    
+    if (configuration.addressInfo != nil) {
+        _addressViewModel = [[STPAddressViewModel alloc] initWithRequiredBillingFields:configuration.requiredBillingAddressFields andAddressInfo:configuration.addressInfo];
+    } else {
+        _addressViewModel = [[STPAddressViewModel alloc] initWithRequiredBillingFields:configuration.requiredBillingAddressFields];
+    }
+    
     _addressViewModel.delegate = self;
     _checkoutAPIClient = [[STPCheckoutAPIClient alloc] initWithPublishableKey:configuration.publishableKey];
     self.title = STPLocalizedString(@"Add a Card", @"Title for Add a Card view");
@@ -137,7 +143,11 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     cardImageView.contentMode = UIViewContentModeCenter;
     cardImageView.frame = CGRectMake(0, 0, self.view.bounds.size.width, cardImageView.bounds.size.height + (57 * 2));
     self.cardImageView = cardImageView;
-    self.tableView.tableHeaderView = cardImageView;
+    
+    if (_configuration.cradImageEnabled) {
+        self.tableView.tableHeaderView = cardImageView;
+    }
+
     self.emailCell = [[STPRememberMeEmailCell alloc] initWithDelegate:self];
     if ([STPEmailAddressValidator stringIsValidEmailAddress:self.prefilledInformation.email]) {
         self.emailCell.contents = self.prefilledInformation.email;
@@ -402,9 +412,12 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
 }
 
 - (void)updateDoneButton {
-    self.stp_navigationItemProxy.rightBarButtonItem.enabled = (self.paymentCell.paymentField.isValid || self.checkoutAccountCard) &&
+    BOOL result = (self.paymentCell.paymentField.isValid || self.checkoutAccountCard) &&
     self.addressViewModel.isValid &&
     (self.configuration.smsAutofillDisabled || [STPEmailAddressValidator stringIsValidEmailAddress:self.emailCell.contents]);
+    self.stp_navigationItemProxy.rightBarButtonItem.enabled = result;
+    
+    [self.delegate addCardViewController:self didUpdateCardAvailable:result];
 }
 
 - (void)smsCodeViewControllerDidCancel:(__unused STPSMSCodeViewController *)smsCodeViewController {

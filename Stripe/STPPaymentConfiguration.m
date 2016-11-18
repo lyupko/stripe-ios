@@ -35,6 +35,8 @@
         _requiredShippingAddressFields = PKAddressFieldNone;
         _companyName = [NSBundle stp_applicationName];
         _smsAutofillDisabled = NO;
+        _cradImageEnabled = YES;
+        _addressInfo = nil;
         _shippingType = STPShippingTypeShipping;
     }
     return self;
@@ -50,6 +52,8 @@
     copy.companyName = self.companyName;
     copy.appleMerchantIdentifier = self.appleMerchantIdentifier;
     copy.smsAutofillDisabled = self.smsAutofillDisabled;
+    copy.cradImageEnabled = self.cradImageEnabled;
+    copy.addressInfo = self.addressInfo;
     return copy;
 }
 

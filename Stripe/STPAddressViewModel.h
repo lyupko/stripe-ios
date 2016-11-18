@@ -30,6 +30,7 @@
 
 - (instancetype)initWithRequiredBillingFields:(STPBillingAddressFields)requiredBillingAddressFields;
 - (instancetype)initWithRequiredShippingFields:(PKAddressField)requiredShippingAddressFields;
+- (instancetype)initWithRequiredBillingFields:(STPBillingAddressFields)requiredBillingAddressFields andAddressInfo:(STPAddress*)addressInfo;
 - (STPAddressFieldTableViewCell *)cellAtIndex:(NSInteger)index;
 
 @end

@@ -53,6 +53,37 @@
     return self;
 }
 
+- (instancetype)initWithRequiredBillingFields:(STPBillingAddressFields)requiredBillingAddressFields andAddressInfo:(STPAddress*)addressInfo {
+    self = [super init];
+    if (self) {
+        _isBillingAddress = YES;
+        _requiredBillingAddressFields = requiredBillingAddressFields;
+        switch (requiredBillingAddressFields) {
+            case STPBillingAddressFieldsNone:
+                _addressCells = @[];
+                break;
+            case STPBillingAddressFieldsZip:
+                _addressCells = @[
+                                  // Postal code cell will be added later if necessary
+                                  ];
+                break;
+            case STPBillingAddressFieldsFull:
+                _addressCells = @[
+                                  [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeName contents:addressInfo.name lastInList:NO delegate:self],
+                                  [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeLine1 contents:addressInfo.line1 lastInList:NO delegate:self],
+                                  [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeLine2 contents:addressInfo.line2 lastInList:NO delegate:self],
+                                  [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeCity contents:addressInfo.city lastInList:NO delegate:self],
+                                  [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeState contents:addressInfo.state lastInList:NO delegate:self],
+                                  // Postal code cell will be added later if necessary
+                                  [[STPAddressFieldTableViewCell alloc] initWithType:STPAddressFieldTypeCountry contents:_addressFieldTableViewCountryCode lastInList:YES delegate:self],
+                                  ];
+                break;
+        }
+        [self commonInit];
+    }
+    return self;
+}
+
 - (instancetype)initWithRequiredShippingFields:(PKAddressField)requiredShippingAddressFields {
     self = [super init];
     if (self) {

@@ -70,6 +70,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic)BOOL smsAutofillDisabled;
 
+
+@property(nonatomic)BOOL cradImageEnabled;
+
+@property(nonatomic)STPAddress *addressInfo;
+
 @end
 
 NS_ASSUME_NONNULL_END
