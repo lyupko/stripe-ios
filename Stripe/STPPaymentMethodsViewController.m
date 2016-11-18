@@ -211,6 +211,10 @@
     [self internalViewControllerDidCreateToken:token completion:completion];
 }
 
+- (void)addCardViewController:(__unused STPAddCardViewController *)addCardViewController didUpdateCardAvailable:(__unused BOOL)available {
+    
+}
+
 - (void)dismissWithCompletion:(STPVoidBlock)completion {
     if ([self stp_isAtRootOfNavigationController]) {
         [self.presentingViewController dismissViewControllerAnimated:YES completion:completion];

@@ -22,4 +22,8 @@
     }
 }
 
+- (void)addCardViewController:(__unused STPAddCardViewController *)addCardViewController didUpdateCardAvailable:(__unused BOOL)available {
+    
+}
+
 @end
