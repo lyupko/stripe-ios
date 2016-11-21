@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)saveCard;
 
-- (void)addFooterView:(UIView*)footerView;
+- (void)addFooterView:(UIView *)view;
 
 @end
 
