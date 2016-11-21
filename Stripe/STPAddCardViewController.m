@@ -149,14 +149,14 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     cardImageView.frame = CGRectMake(0, 0, self.view.bounds.size.width, cardImageView.bounds.size.height + (57 * 2));
     self.cardImageView = cardImageView;
     
+    if (self.footerView) {
+        self.tableView.tableFooterView = self.footerView;
+    }
+    
     if (_configuration.cradImageEnabled) {
         self.tableView.tableHeaderView = cardImageView;
     } else {
         self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
-    }
-
-    if (self.footerView) {
-        self.tableView.tableFooterView = self.footerView;
     }
     
     self.emailCell = [[STPRememberMeEmailCell alloc] initWithDelegate:self];
