@@ -324,7 +324,9 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
 }
 
 - (void)cancel:(__unused id)sender {
-    [self.delegate addCardViewControllerDidCancel:self];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(addCardViewControllerDidCancel:)]) {
+        [self.delegate addCardViewControllerDidCancel:self];
+    }
 }
 
 - (void)nextPressed:(__unused id)sender {

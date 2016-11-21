@@ -68,6 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param addCardViewController the view controller that has been cancelled
  */
+@optional
 - (void)addCardViewControllerDidCancel:(STPAddCardViewController *)addCardViewController;
 
 /**
