@@ -209,6 +209,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     self.footerView = view;
 }
 
+
 - (void)endEditing {
     [self.view endEditing:NO];
 }
