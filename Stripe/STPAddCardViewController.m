@@ -67,6 +67,7 @@
 @property(nonatomic)BOOL showingRememberMePhoneAndTerms;
 #ifdef STRIPE_UNIT_TESTS_ENABLED
 @property(nonatomic)BOOL forceEnableRememberMeForTesting;
+@property(nonatomic) UIView *footerView;
 #endif
 @end
 
@@ -127,6 +128,8 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     self.automaticallyAdjustsScrollViewInsets = NO;
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     tableView.sectionHeaderHeight = 30;
+    tableView.sectionFooterHeight = 30;
+    
     [self.view addSubview:tableView];
     self.tableView = tableView;
     
@@ -197,7 +200,8 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
 }
 
 - (void)addFooterView:(UIView *)footerView {
-    self.tableView.tableFooterView = footerView;
+    self.footerView = footerView;
+    self.tableView.tableFooterView = self.footerView;
 }
 
 - (void)endEditing {
