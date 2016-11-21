@@ -202,6 +202,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
 - (void)addFooterView:(UIView *)view {
     self.footerView = view;
     self.tableView.tableFooterView = self.footerView;
+    
     [self.tableView reloadData];
 }
 
