@@ -55,7 +55,7 @@
         toolbar.items = @[flexibleItem, nextItem];
         _inputAccessoryToolbar = toolbar;
         
-        NSString *countryCode = [[NSLocale autoupdatingCurrentLocale] objectForKey:NSLocaleCountryCode];
+        NSString *countryCode = type == STPAddressFieldTypeCountry ? contents : [[NSLocale autoupdatingCurrentLocale] objectForKey:NSLocaleCountryCode];
         NSMutableArray *otherCountryCodes = [[NSLocale ISOCountryCodes] mutableCopy];
         NSLocale *locale = [NSLocale currentLocale];
         [otherCountryCodes removeObject:countryCode];
