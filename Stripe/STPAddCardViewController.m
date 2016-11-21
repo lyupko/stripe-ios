@@ -67,6 +67,7 @@
 @property(nonatomic)BOOL showingRememberMePhoneAndTerms;
 #ifdef STRIPE_UNIT_TESTS_ENABLED
 @property(nonatomic)BOOL forceEnableRememberMeForTesting;
+
 @property(nonatomic, weak) UIView *footerView;
 #endif
 @end
