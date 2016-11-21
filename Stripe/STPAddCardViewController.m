@@ -67,7 +67,6 @@
 @property(nonatomic)BOOL showingRememberMePhoneAndTerms;
 #ifdef STRIPE_UNIT_TESTS_ENABLED
 @property(nonatomic)BOOL forceEnableRememberMeForTesting;
-@property(nonatomic) UIView *footerView;
 #endif
 @end
 
@@ -200,9 +199,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
 }
 
 - (void)addFooterView:(UIView *)view {
-    self.footerView = view;
-    self.tableView.tableFooterView = self.footerView;
-    
+    self.tableView.tableFooterView = view;
     [self.tableView reloadData];
 }
 
