@@ -67,6 +67,7 @@
 @property(nonatomic)BOOL showingRememberMePhoneAndTerms;
 #ifdef STRIPE_UNIT_TESTS_ENABLED
 @property(nonatomic)BOOL forceEnableRememberMeForTesting;
+@property(nonatomic, weak) UIView *footerView;
 #endif
 @end
 
@@ -152,6 +153,10 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
         self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
     }
 
+    if (self.footerView != nil) {
+        self.tableView.tableFooterView = self.footerView;
+    }
+    
     self.emailCell = [[STPRememberMeEmailCell alloc] initWithDelegate:self];
     if ([STPEmailAddressValidator stringIsValidEmailAddress:self.prefilledInformation.email]) {
         self.emailCell.contents = self.prefilledInformation.email;
@@ -199,8 +204,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
 }
 
 - (void)addFooterView:(UIView *)view {
-    self.tableView.tableFooterView = view;
-    [self.tableView reloadData];
+    self.footerView = view;
 }
 
 - (void)endEditing {
