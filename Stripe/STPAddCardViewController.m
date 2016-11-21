@@ -154,7 +154,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
         self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectZero];
     }
 
-    if (self.footerView != nil) {
+    if (self.footerView) {
         self.tableView.tableFooterView = self.footerView;
     }
     
