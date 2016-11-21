@@ -196,6 +196,10 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     }];
 }
 
+- (void)addFooterView:(UIView *)footerView {
+    self.tableView.tableFooterView = footerView;
+}
+
 - (void)endEditing {
     [self.view endEditing:NO];
 }
