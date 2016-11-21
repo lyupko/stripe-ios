@@ -46,6 +46,7 @@
 @property(nonatomic)STPAPIClient *apiClient;
 @property(nonatomic, weak)UITableView *tableView;
 @property(nonatomic, weak)UIImageView *cardImageView;
+@property(nonatomic, weak) UIView *footerView;
 @property(nonatomic)UIBarButtonItem *doneItem;
 @property(nonatomic)UIBarButtonItem *backItem;
 @property(nonatomic)UIBarButtonItem *cancelItem;
@@ -67,8 +68,6 @@
 @property(nonatomic)BOOL showingRememberMePhoneAndTerms;
 #ifdef STRIPE_UNIT_TESTS_ENABLED
 @property(nonatomic)BOOL forceEnableRememberMeForTesting;
-
-@property(nonatomic, weak) UIView *footerView;
 #endif
 @end
 
@@ -208,7 +207,6 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
 - (void)addFooterView:(UIView *)view {
     self.footerView = view;
 }
-
 
 - (void)endEditing {
     [self.view endEditing:NO];
