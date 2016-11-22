@@ -687,7 +687,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
         return 0.01f;
     }
     if (section == STPPaymentCardRememberMeSection || [self tableView:tableView numberOfRowsInSection:section] != 0) {
-        return tableView.sectionHeaderHeight;
+        return 0.01f;
     }
     return 0.01f;
 }
@@ -719,7 +719,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
 
 - (UIView *)tableView:(__unused UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if (section == STPPaymentCardRememberMeSection) {
-        return self.rememberMeTermsView;
+        return [UIView new];//self.rememberMeTermsView;
     }
     else {
         return [UIView new];
