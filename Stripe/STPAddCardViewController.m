@@ -128,7 +128,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     self.automaticallyAdjustsScrollViewInsets = NO;
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     tableView.sectionHeaderHeight = 30;
-    tableView.sectionFooterHeight = 30;
+    tableView.sectionFooterHeight = 0;
     
     [self.view addSubview:tableView];
     self.tableView = tableView;
@@ -682,15 +682,15 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     return 0.01f;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == STPPaymentCardEmailSection) {
-        return 0.01f;
-    }
-    if (section == STPPaymentCardRememberMeSection || [self tableView:tableView numberOfRowsInSection:section] != 0) {
-        return tableView.sectionHeaderHeight;
-    }
-    return 0.01f;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    if (section == STPPaymentCardEmailSection) {
+//        return 0.01f;
+//    }
+//    if (section == STPPaymentCardRememberMeSection || [self tableView:tableView numberOfRowsInSection:section] != 0) {
+//        return tableView.sectionHeaderHeight;
+//    }
+//    return 0.01f;
+//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == STPPaymentCardEmailSection || section == STPPaymentCardRememberMeSection) {
@@ -717,13 +717,13 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     return nil;
 }
 
-- (UIView *)tableView:(__unused UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == STPPaymentCardRememberMeSection) {
-        return [UIView new];//self.rememberMeTermsView;
-    }
-    else {
-        return [UIView new];
-    }
-}
+//- (UIView *)tableView:(__unused UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+//    if (section == STPPaymentCardRememberMeSection) {
+//        return [UIView new];//self.rememberMeTermsView;
+//    }
+//    else {
+//        return [UIView new];
+//    }
+//}
 
 @end
