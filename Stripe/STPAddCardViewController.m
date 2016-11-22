@@ -675,7 +675,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (section == STPPaymentCardRememberMeSection 
         && self.showingRememberMePhoneAndTerms) {
-        return [self.rememberMeTermsView heightForWidth:CGRectGetWidth(self.tableView.frame)];
+        return 0.01f;//[self.rememberMeTermsView heightForWidth:CGRectGetWidth(self.tableView.frame)];
     } else if ([self tableView:tableView numberOfRowsInSection:section] == 0) {
         return 0.01f;
     }
@@ -687,7 +687,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
         return 0.01f;
     }
     if (section == STPPaymentCardRememberMeSection || [self tableView:tableView numberOfRowsInSection:section] != 0) {
-        return 0.01f;
+        return tableView.sectionHeaderHeight;
     }
     return 0.01f;
 }
