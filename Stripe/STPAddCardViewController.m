@@ -128,7 +128,6 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     self.automaticallyAdjustsScrollViewInsets = NO;
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     tableView.sectionHeaderHeight = 30;
-    
     tableView.sectionFooterHeight = 30;
     
     [self.view addSubview:tableView];
@@ -680,7 +679,7 @@ static NSInteger STPPaymentCardRememberMeSection = 3;
     } else if ([self tableView:tableView numberOfRowsInSection:section] == 0) {
         return 0.01f;
     }
-    return 27.0f;
+    return 0.01f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
